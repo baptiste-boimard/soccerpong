@@ -1,6 +1,10 @@
-# CanvasSoccer V1
+# CanvasSoccer V1.1
 
-Création d'un petit jeu à la Pong en vailla JS pour tester la balise <canvas>
+V1.1 : 
+  - Possiblité de bouger les paddles pour la remise en jeux après un but 
+  - Intégration du jeux canvas dans react
+
+V1 : Création d'un petit jeu à la Pong en vailla JS pour tester la balise <canvas>
 
 ![screenshot du jeu](./readme_1.png)  
 
