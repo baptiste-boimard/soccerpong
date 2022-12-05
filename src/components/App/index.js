@@ -1,14 +1,18 @@
 //Components
-import Canvas from "../Canvas";
+import Header from "../Header"
+import Menu from "../Menu";
+import Body from "../Body"
+
 
 //Style
-import logo from '../../logo.svg';
 import '../../App.css';
 
 function App() {
   return (
     <div className="App">
-      <Canvas />
+      <Header />
+      <Menu />
+      <Body />
     </div>
   );
 }
