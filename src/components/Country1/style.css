@@ -11,10 +11,14 @@
 }
 
 
-.country-choice {
+.wordle {
     border: yellow 2px solid;
     margin-top: 2.5rem;
     width: 15rem;
+}
+
+.country {
+    border: red 2px solid;
 }
 
 .player {

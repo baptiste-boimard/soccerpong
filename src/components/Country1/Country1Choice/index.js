@@ -1,9 +1,18 @@
 //Style
 import "./style.css"
 
-const Country1Choise = ({countryChoice}) => {
+import france from "../../../assets/images/france.jpg"
+
+const Country1Choise = ({countryChoice, changeFlag}) => {
+
+    const selectFlag = () => {
+        countryChoice();
+        // eslint-disable-next-line no-undef
+        changeFlag(france);
+    }
+
     return(
-        <div className="container" onClick={countryChoice}>coucou</div>
+        <div className="container" onClick={selectFlag}>coucou</div>
     );
 }
 
