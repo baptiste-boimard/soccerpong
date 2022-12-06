@@ -1,14 +1,18 @@
 //import Style
 import "./style.css"
 
-function Menu() {
+function Menu({changeMode}) {
 
+    //Fonction de choix du mode grand but
     const bigMode = () => {
-        console.log("big");
+        changeMode("bigMode");
+        console.log("BIG");
     }
 
+    //Fonction de choix du mode petit but
     const littleMode = () => {
-        console.log("little");
+        changeMode ("littleMode");
+        console.log("LITTLE"); 
     }
 
     return(

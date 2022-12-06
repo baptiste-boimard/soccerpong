@@ -6,11 +6,13 @@ import Country2 from "../Country2"
 //import Style
 import "./style.css"
 
-function Body() {
+function Body({selectMode}) {
     return(
         <div className="body">
             <Country1 />
-            <Canvas />
+            <Canvas 
+                selectMode={selectMode}
+            />
             <Country2 />
         </div>
         

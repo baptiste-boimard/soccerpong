@@ -24,10 +24,6 @@
     width: 70%;
 }
 
-.country {
-    border: red 2px solid;
-}
-
 .player {
     font-size: 2rem;
     font-weight: bold;

@@ -1,6 +1,7 @@
 //Style
 import "./style.css"
 
+//Images des drapeaux
 import france from "../../../assets/images/france.jpg"
 import japon from "../../../assets/images/japon.png"
 import bresil from "../../../assets/images/bresil.png"
@@ -10,6 +11,7 @@ import senegal from "../../../assets/images/senegal.png"
 
 const Country1Choise = ({countryChoice, changeFlag}) => {
 
+    //Fonction de choix du drapeau
     const selectFlag = (event) => {
         countryChoice();
         changeFlag(event.target.src);
