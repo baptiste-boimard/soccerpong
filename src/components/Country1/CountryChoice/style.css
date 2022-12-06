@@ -1,0 +1,16 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 33%;
+    left: 30%;
+    border: yellow 3px solid;
+    background-color: #6DC448;
+    width: 40%;
+}
+
+.flag {
+    width: 32.7%;
+    border: yellow 3px solid;
+}

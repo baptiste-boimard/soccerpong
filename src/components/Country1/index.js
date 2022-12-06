@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 import { useState } from "react";
 
 //Components
-import Country1Choice from "./Country1Choice/"
+import CountryChoice from "./CountryChoice"
 
 //Image
 import wordle from "../../assets/images/wordle.jpg"
@@ -17,8 +17,6 @@ function Country1() {
 
     const countryChoice = () => {
         setChoice(!openChoice);
-        console.log(openChoice)
-        console.log(flagChoice)
     }
 
     const changeFlag = (country) => {
@@ -28,7 +26,7 @@ function Country1() {
         <div className="country1">
             <p className="choice">Clique sur le drapeau pour choisir ton pays</p>
             <img src={flagChoice} className={flagChoice = wordle ? "wordle" : "country"} alt="Choix du pays" onClick={countryChoice}/>
-            {openChoice && <Country1Choice 
+            {openChoice && <CountryChoice 
                                 countryChoice={countryChoice}
                                 changeFlag={changeFlag}
                             />}
