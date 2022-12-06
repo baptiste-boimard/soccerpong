@@ -13,6 +13,8 @@ function App() {
       <Header />
       <Menu />
       <Body />
+      <p className="copyright">Punky@2022</p>
+      <p className="instruction">Le Joueur 1 utilise Z et D pour monter et descendre, le Joueur 2 utilise HAUT et BAS </p>
     </div>
   );
 }

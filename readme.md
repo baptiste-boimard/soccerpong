@@ -1,4 +1,7 @@
-# CanvasSoccer V1.1
+# CanvasSoccer V1.2
+
+V1.2 :
+  - Choix d'un drapeau pour représenter chaque joueur
 
 V1.1 : 
   - Possiblité de bouger les paddles pour la remise en jeux après un but 
