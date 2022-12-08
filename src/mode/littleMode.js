@@ -2,6 +2,7 @@
 
     //On définit la variable du context
     let context;
+    let stopAnimation;
 
     // Variables des paddles
     const paddleWidth = 15;
@@ -201,7 +202,9 @@ function resetBallFor2() {
 
 //Coup d'envoi
 export const kickOff = (ctx) => {
+    debugger
     context = ctx;
+    stopAnimation = true;
     firstPaddle.x = paddleMargin;
     firstPaddle.y = context.canvas.height/2 - paddleHeight/2;
     secondPaddle.x = context.canvas.width - paddleMargin - paddleWidth;
@@ -212,16 +215,29 @@ export const kickOff = (ctx) => {
     goalFor2 = false;
     score1 = 0;
     score2 = 0;
+    ball.dx = 3;
+    ball.dy = 3*(Math.random()*2-1);
+    ball.velocity = 3;
+
     drawBackground();
     drawFirstPaddle();
     drawSecondPaddle();
     drawBall();
+
     context.font = "48px sans-serif";
     context.fillStyle = "white";
-    context.fillText("Canvas Soccer dfdsfsdfdsf", 280, 100); 
+    context.fillText("Canvas Soccer", 280, 100); 
     context.font = "24px sans-serif";
     context.fillText("Appuyer sur \"espace\" lancer la balle", 245, 150); 
+    
     kickOffDirection();
+
+     //Coup d'envoi
+     document.addEventListener("keydown", function(event) {
+    if (event.key === " " && ball.y === context.canvas.height/2 && ball.x === context.canvas.width/2) {
+        stopAnimation = false;
+        loop();
+    }})
 }
 
 
@@ -246,11 +262,18 @@ function update() {
 //Gestion des animations par la loop
 function loop() {
 
+    // stopAnimation = false;
+
     drawBackground();
 
     draw();
 
     update();
+    
+    if(stopAnimation) {
+        debugger
+        return;
+    }
 
     requestAnimationFrame(loop);
 }
@@ -260,7 +283,7 @@ function loop() {
 //Action du paddle pour le joueur 1
 document.addEventListener("keydown", function(event) {
     if(event.key === "z" && firstPaddle.y > 0) {
-        firstPaddle.y -= firstPaddle.dy ;
+        firstPaddle.y -= firstPaddle.dy ;  
     } else if(event.key === "s" && (firstPaddle.y + paddleHeight) < context.canvas.height) {
         firstPaddle.y += firstPaddle.dy;
     }
@@ -291,9 +314,11 @@ document.addEventListener("keydown", function(event) {
     
     //Coup d'envoi
     } else if (event.key === " " && ball.y === context.canvas.height/2 && ball.x === context.canvas.width/2) {
+        stopAnimation = false;
         loop();
     }
 });
+
 
 // document.addEventListener("mousedown", function(event) {
 //     console.log(event.button);

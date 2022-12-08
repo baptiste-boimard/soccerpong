@@ -1,8 +1,16 @@
 import { useEffect } from "react";
-import { kickOff as bigMode } from "../../mode/bigMode.js";
-import { kickOff as littleMode } from "../../mode/bigMode.js"
+import { start as bigMode, reset as bigReset} from "../../mode/bigMode.js";
+import { start as littleMode, reset as littleReset} from "../../mode/bigMode.js"
 
-function Canvas({selectMode}) {
+function Canvas({selectMode, reset}) {
+
+    if (reset && selectMode === "bigMode") {
+        const canvas = document.querySelector("canvas");
+        canvas.width = 900;
+        canvas.height = 420;
+        const ctx = canvas.getContext("2d");
+        bigMode(ctx);
+    }
 
     //Chargement de notre canvas après le chargement de la page
     useEffect(() => {
@@ -10,14 +18,8 @@ function Canvas({selectMode}) {
         canvas.width = 900;
         canvas.height = 420;
         const ctx = canvas.getContext("2d");
-        if (selectMode === "bigMode") {
-            bigMode(ctx)
-        } else if (selectMode === "littleMode") {
-            littleMode(ctx)
-        }
-
-    }, [selectMode]);
-
+        bigMode(ctx);
+    }, [])
     return(
         <div className="canvas">
             <canvas className="canvas"></canvas>

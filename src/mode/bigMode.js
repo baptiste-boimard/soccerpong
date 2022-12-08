@@ -2,6 +2,7 @@
 
     //On définit la variable du context
     let context;
+    let stopAnimation;
 
     // Variables des paddles
     const paddleWidth = 15;
@@ -252,13 +253,28 @@ function update() {
 //Gestion des animations par la loop
 function loop() {
 
+    // stopAnimation = false;
+
     drawBackground();
 
     draw();
 
     update();
+    
+    if(stopAnimation) {
+        return;
+    }
 
     requestAnimationFrame(loop);
+}
+
+export const start = (ctx) => {
+    kickOff(ctx);
+}
+
+export const reset = () => {
+    stopAnimation=true;
+    kickOff();
 }
 
 //Actionlisteners pour le controle des joueurs
@@ -266,7 +282,7 @@ function loop() {
 //Action du paddle pour le joueur 1
 document.addEventListener("keydown", function(event) {
     if(event.key === "z" && firstPaddle.y > 0) {
-        firstPaddle.y -= firstPaddle.dy ;
+        firstPaddle.y -= firstPaddle.dy ;  
     } else if(event.key === "s" && (firstPaddle.y + paddleHeight) < context.canvas.height) {
         firstPaddle.y += firstPaddle.dy;
     }
@@ -297,8 +313,7 @@ document.addEventListener("keydown", function(event) {
     
     //Coup d'envoi
     } else if (event.key === " " && ball.y === context.canvas.height/2 && ball.x === context.canvas.width/2) {
-        // ball.dx = 3;
-        // ball.dy = 3*(Math.random()*2-1);
+        stopAnimation = false;
         loop();
     }
 });
