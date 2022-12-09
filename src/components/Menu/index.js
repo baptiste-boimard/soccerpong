@@ -14,7 +14,7 @@ function Menu({changeMode, resetMode}) {
     const littleMode = () => {
         changeMode ("littleMode");
         resetMode(true)
-        console.log("BIG","RESET");
+        console.log("LITTLE","RESET");
     }
 
     return(

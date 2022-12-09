@@ -6,13 +6,14 @@ import Country2 from "../Country2"
 //import Style
 import "./style.css"
 
-function Body({selectMode, reset}) {
+function Body({selectMode, isReset, resetMode}) {
     return(
         <div className="body">
             <Country1 />
             <Canvas 
                 selectMode={selectMode}
-                reset={reset}
+                isReset={isReset}
+                resetMode={resetMode}
             />
             <Country2 />
         </div>

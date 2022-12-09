@@ -13,14 +13,12 @@ function App() {
 
   //Selection du mode de jeu
   const [selectMode, setMode] = useState("bigMode");
-
   const changeMode = (mode) => {
     setMode(mode)
   }
 
   //Reset du canvas
-  const [reset, setReset] = useState(false);
-
+  const [isReset, setReset] = useState(false);
   const resetMode = (isReset) => {
     setReset(isReset)
   }
@@ -35,7 +33,8 @@ function App() {
       />
       <Body 
         selectMode={selectMode}
-        reset={reset}
+        isReset={isReset}
+        resetMode={resetMode}
         />
       <p className="copyright">Punky@2022</p>
       <p className="instruction">Le Joueur 1 utilise Z et D pour monter et descendre, le Joueur 2 utilise HAUT et BAS </p>
