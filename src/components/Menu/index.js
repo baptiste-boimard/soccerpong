@@ -19,8 +19,8 @@ function Menu({changeMode, resetMode}) {
 
     return(
         <div className="menu">
-            <button className="button" onClick={bigMode}>Grand But</button>
-            <button className="button" onClick={littleMode}>Petit But</button>
+            <div className="button" onClick={bigMode}>Grand But</div>
+            <div className="button" onClick={littleMode}>Petit But</div>
         </div>
     );
 }

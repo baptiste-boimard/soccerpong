@@ -2,7 +2,7 @@
 
     //On définit la variable du context
     let context;
-    let stopAnimation;
+    let animate;
 
     // Variables des paddles
     const paddleWidth = 15;
@@ -52,14 +52,26 @@ const drawBackground = () => {
     context.fillStyle = "black";
     context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     
+    //Bord du terrain
     context.beginPath();
-    context.lineWidth=2;
+    context.lineWidth=10;
     context.strokeStyle = "white"
-    context.moveTo(context.canvas.width/2, 0);
-    context.lineTo(context.canvas.width/2, context.canvas.height);
+    context.moveTo(0, 0);
+    context.lineTo(context.canvas.width, 0;
     context.stroke();
     context.closePath();
 
+
+    //Ligne de milieu de terrain
+    context.beginPath();
+    context.lineWidth=2;
+    context.strokeStyle = "white";
+    context.moveTo(context.canvas.width/2, 0);
+    context.lineTo(context.canvas.width/2, context.canvas.height +100);
+    context.stroke();
+    context.closePath();
+
+    //Rond central
     context.beginPath();
     context.lineWidth=2;
     context.arc(context.canvas.width/2, context.canvas.height/2 , 50, 0, Math.PI*2, false);
@@ -201,10 +213,7 @@ function resetBallFor2() {
 
 
 //Coup d'envoi
-export const kickOff = (ctx) => {
-    debugger
-    context = ctx;
-    stopAnimation = true;
+export const kickOff = () => {
     firstPaddle.x = paddleMargin;
     firstPaddle.y = context.canvas.height/2 - paddleHeight/2;
     secondPaddle.x = context.canvas.width - paddleMargin - paddleWidth;
@@ -231,13 +240,6 @@ export const kickOff = (ctx) => {
     context.fillText("Appuyer sur \"espace\" lancer la balle", 245, 150); 
     
     kickOffDirection();
-
-     //Coup d'envoi
-     document.addEventListener("keydown", function(event) {
-    if (event.key === " " && ball.y === context.canvas.height/2 && ball.x === context.canvas.width/2) {
-        stopAnimation = false;
-        loop();
-    }})
 }
 
 
@@ -258,7 +260,6 @@ function update() {
 }
 
 
-
 //Gestion des animations par la loop
 function loop() {
 
@@ -270,12 +271,17 @@ function loop() {
 
     update();
     
-    if(stopAnimation) {
-        debugger
-        return;
-    }
+    animate = requestAnimationFrame(loop);
+}
 
-    requestAnimationFrame(loop);
+export const start = (ctx) => {
+    context = ctx;
+    kickOff();
+}
+
+export const reset = () => {
+    cancelAnimationFrame(animate)
+    kickOff()
 }
 
 //Actionlisteners pour le controle des joueurs
@@ -314,12 +320,11 @@ document.addEventListener("keydown", function(event) {
     
     //Coup d'envoi
     } else if (event.key === " " && ball.y === context.canvas.height/2 && ball.x === context.canvas.width/2) {
-        stopAnimation = false;
         loop();
     }
 });
 
-
+//Event Listener pour trouver le nom des touches
 // document.addEventListener("mousedown", function(event) {
 //     console.log(event.button);
 // });

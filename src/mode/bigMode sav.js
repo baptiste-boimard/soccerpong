@@ -2,6 +2,7 @@
 
     //On définit la variable du context
     let context;
+    let animate;
 
     // Variables des paddles
     const paddleWidth = 15;
@@ -51,14 +52,28 @@ const drawBackground = () => {
     context.fillStyle = "black";
     context.fillRect(0, 0, context.canvas.width, context.canvas.height);
     
+    //Bord du terrain
+    context.beginPath();
+    context.lineWidth=10;
+    context.strokeStyle = "white"
+    context.moveTo(0, 0);
+    context.lineTo(context.canvas.width, 0);
+    context.moveTo(0, context.canvas.height);
+    context.lineTo(context.canvas.width, context.canvas.height);
+    context.stroke();
+    context.closePath();
+
+
+    //Ligne de milieu de terrain
     context.beginPath();
     context.lineWidth=2;
     context.strokeStyle = "white"
     context.moveTo(context.canvas.width/2, 0);
-    context.lineTo(context.canvas.width/2, context.canvas.height);
+    context.lineTo(context.canvas.width/2, context.canvas.height +100);
     context.stroke();
     context.closePath();
 
+    //Rond central
     context.beginPath();
     context.lineWidth=2;
     context.arc(context.canvas.width/2, context.canvas.height/2 , 50, 0, Math.PI*2, false);
@@ -119,7 +134,7 @@ function moveBall() {
 
 //Collission avec les murs
 function wallCollision() {
-    if(ball.y + ball.radius > context.canvas.height || ball.y - ball.radius < 0) {
+    if(ball.y + ball.radius > context.canvas.height -10 || ball.y - ball.radius < 10 ) {
         ball.dy *= -1;
     }
 }
@@ -200,23 +215,32 @@ function resetBallFor2() {
 
 
 //Coup d'envoi
-export const kickOff = (ctx) => {
-    context = ctx;
+export const kickOff = () => {
     firstPaddle.x = paddleMargin;
     firstPaddle.y = context.canvas.height/2 - paddleHeight/2;
     secondPaddle.x = context.canvas.width - paddleMargin - paddleWidth;
     secondPaddle.y = context.canvas.height/2 - paddleHeight/2;
     ball.x = context.canvas.width/2;
     ball.y = context.canvas.height/2;
+    goalFor1 = false;
+    goalFor2 = false;
+    score1 = 0;
+    score2 = 0;
+    ball.dx = 3;
+    ball.dy = 3*(Math.random()*2-1);
+    ball.velocity = 3;
+
     drawBackground();
     drawFirstPaddle();
     drawSecondPaddle();
     drawBall();
+
     context.font = "48px sans-serif";
     context.fillStyle = "white";
     context.fillText("Canvas Soccer", 280, 100); 
     context.font = "24px sans-serif";
     context.fillText("Appuyer sur \"espace\" lancer la balle", 245, 150); 
+    
     kickOffDirection();
 }
 
@@ -238,17 +262,28 @@ function update() {
 }
 
 
-
 //Gestion des animations par la loop
 function loop() {
+
+    // stopAnimation = false;
 
     drawBackground();
 
     draw();
 
     update();
+    
+    animate = requestAnimationFrame(loop);
+}
 
-    requestAnimationFrame(loop);
+export const start = (ctx) => {
+    context = ctx;
+    kickOff();
+}
+
+export const reset = () => {
+    cancelAnimationFrame(animate)
+    kickOff()
 }
 
 //Actionlisteners pour le controle des joueurs
@@ -256,7 +291,7 @@ function loop() {
 //Action du paddle pour le joueur 1
 document.addEventListener("keydown", function(event) {
     if(event.key === "z" && firstPaddle.y > 0) {
-        firstPaddle.y -= firstPaddle.dy ;
+        firstPaddle.y -= firstPaddle.dy ;  
     } else if(event.key === "s" && (firstPaddle.y + paddleHeight) < context.canvas.height) {
         firstPaddle.y += firstPaddle.dy;
     }
@@ -291,6 +326,7 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
+//Event Listener pour trouver le nom des touches
 // document.addEventListener("mousedown", function(event) {
 //     console.log(event.button);
 // });

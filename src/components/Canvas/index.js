@@ -21,7 +21,7 @@ function Canvas({selectMode, isReset, resetMode}) {
         bigReset()
         resetMode(false)
     }
-
+ 
     return(
         <div className="canvas">
             <canvas className="canvas"></canvas>
