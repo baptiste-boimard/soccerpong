@@ -7,7 +7,7 @@
     // Variables des paddles
     const paddleWidth = 15;
     const paddleMargin = 20;
-    const paddleHeight = 80;
+    const paddleHeight = 100;
 
     const firstPaddle = {
         x : 0,
@@ -60,14 +60,6 @@ const drawBackground = () => {
     context.lineTo(context.canvas.width, 0);
     context.moveTo(0, context.canvas.height);
     context.lineTo(context.canvas.width, context.canvas.height);
-    context.moveTo(0, 0);
-    context.lineTo(0, paddleHeight + 10);
-    context.moveTo(0, context.canvas.height);
-    context.lineTo(0, context.canvas.height - paddleHeight -10) ;
-    context.moveTo(context.canvas.width, 0);
-    context.lineTo(context.canvas.width, paddleHeight + 10);
-    context.moveTo(context.canvas.width, context.canvas.height);
-    context.lineTo(context.canvas.width, context.canvas.height - paddleHeight -10) ;
     context.stroke();
     context.closePath();
 
@@ -142,24 +134,10 @@ function moveBall() {
 
 //Collission avec les murs
 function wallCollision() {
-    if(     (ball.y + ball.radius > context.canvas.height -10) ||
-            (ball.y - ball.radius < 10)) {
+    if(ball.y + ball.radius > context.canvas.height -10 || ball.y - ball.radius < 10 ) {
         ball.dy *= -1;
-    } 
-    else if (   (ball.x - ball.radius < 10) &&
-                (( (ball.y - ball.radius < paddleHeight+10) && (0 < ball.y - ball.radius) ) ||
-                ((context.canvas.height - paddleHeight - 10 < ball.y + ball.radius) && (ball.y + ball.radius< context.canvas.height)))){
-        ball.dx *= -1;
-    }
-    else if (   (ball.x + ball.radius > context.canvas.width - 10) &&
-                (( (0 < ball.y - ball.radius) && (ball.y - ball.radius < paddleHeight + 10) ) ||
-                ((context.canvas.height - paddleHeight -10 < ball.y + ball.radius) && (ball.y + ball.radius < context.canvas.height)))){
-        ball.dx *= -1;
     }
 }
-
-// && (0 < ball.y - ball.radius < paddleHeight + 10)
-// && (context.canvas.height - paddleHeight -10 < ball.y + ball.radius < context.canvas.height)
 
 //Collision avec les buts
 function goalCollision() {
@@ -303,8 +281,9 @@ export const start = (ctx) => {
     kickOff();
 }
 
-export const reset = () => {
+export const reset = (ctx) => {
     cancelAnimationFrame(animate)
+    context = ctx;
     kickOff()
 }
 

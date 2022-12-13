@@ -7,14 +7,12 @@ function Menu({changeMode, resetMode}) {
     const bigMode = () => {
         changeMode("bigMode");
         resetMode(true)
-        console.log("BIG","RESET");
     }
 
     //Fonction de choix du mode petit but
     const littleMode = () => {
         changeMode ("littleMode");
         resetMode(true)
-        console.log("LITTLE","RESET");
     }
 
     return(
