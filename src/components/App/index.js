@@ -23,6 +23,8 @@ function App() {
     setReset(isReset)
   }
 
+  console.log(isReset);
+
   return (
     <div className="App">
       <Header />

@@ -13,32 +13,23 @@ function Canvas({selectMode, isReset, resetMode}) {
 
         if(selectMode === "bigMode") {
             if (isReset) {
-                bigReset(ctx);
                 resetMode(false);
+                littleReset(ctx);
+                bigReset(ctx);
             } else {
                 bigMode(ctx);
             }
         } else if (selectMode === "littleMode") {
             if (isReset) {
-                littleReset(ctx);
                 resetMode(false);
+                bigReset(ctx);
+                littleReset(ctx);
             } else {
                 littleMode(ctx)
             }
         }
-    }, [selectMode, isReset, resetMode])
+    }, [selectMode, isReset])
 
-    // if (isReset && selectMode === "bigMode") {
-    //     bigReset();
-    //     console.log('ok big');
-    //     resetMode(false);
-    // } 
-    // else if (isReset && selectMode === "littleMode") {
-    //     littleReset();
-    //     console.log('ok');
-    //     resetMode(false);
-    // }
- 
     return(
         <div className="canvas">
             <canvas className="canvas"></canvas>

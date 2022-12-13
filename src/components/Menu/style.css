@@ -12,4 +12,5 @@
     border: 2px yellow solid;
     border-radius: 1em 1em 1em 1em;
     background-color: #6DC448;    
+    cursor: pointer;
 }
