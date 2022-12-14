@@ -13,7 +13,6 @@ function Canvas({selectMode, isReset, resetMode}) {
 
         if(selectMode === "bigMode") {
             if (isReset) {
-                resetMode(false);
                 littleReset(ctx);
                 bigReset(ctx);
             } else {
@@ -21,13 +20,15 @@ function Canvas({selectMode, isReset, resetMode}) {
             }
         } else if (selectMode === "littleMode") {
             if (isReset) {
-                resetMode(false);
                 bigReset(ctx);
                 littleReset(ctx);
             } else {
                 littleMode(ctx)
             }
         }
+
+        resetMode(false);
+
     }, [selectMode, isReset])
 
     return(

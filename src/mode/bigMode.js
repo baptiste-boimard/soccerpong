@@ -284,7 +284,8 @@ export const start = (ctx) => {
 export const reset = (ctx) => {
     cancelAnimationFrame(animate)
     context = ctx;
-    kickOff()
+    context.fillStyle = "black";
+    context.fillRect(0, 0, context.canvas.width, context.canvas.height);
 }
 
 //Actionlisteners pour le controle des joueurs
