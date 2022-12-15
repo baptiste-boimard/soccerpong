@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 //import Components
 import Country1 from "../Country1"
 import Canvas from "../Canvas"
@@ -20,6 +22,12 @@ function Body({selectMode, isReset, resetMode}) {
         
 
     );
+}
+
+Body.propTypes = {
+    resetMode: PropTypes.func.isRequired,
+    selectMode: PropTypes.func.isRequired,
+    isReset: PropTypes.bool.isRequired,
 }
 
 export default Body;

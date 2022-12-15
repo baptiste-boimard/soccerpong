@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 //import Style
 import "./style.css"
 
@@ -21,6 +23,11 @@ function Menu({changeMode, resetMode}) {
             <div className="button" onClick={littleMode}>Petit But</div>
         </div>
     );
+}
+
+Menu.propTypes = {
+    changeMode: PropTypes.func.isRequired,
+    resetMode: PropTypes.func.isRequired
 }
 
 export default Menu;

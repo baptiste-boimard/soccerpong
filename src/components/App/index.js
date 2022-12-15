@@ -1,5 +1,5 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
-// import PropType from "prop-types";
 
 //Components
 import Header from "../Header"
@@ -35,8 +35,8 @@ function App() {
       />
       <Body 
         selectMode={selectMode}
-        isReset={isReset}
         resetMode={resetMode}
+        isReset={isReset}
         />
       <p className="copyright">Punky@2022</p>
       <p className="instruction">Le Joueur 1 utilise Z et D pour monter et descendre, le Joueur 2 utilise HAUT et BAS </p>
@@ -45,7 +45,10 @@ function App() {
 }
 
 App.propTypes = {
-  
+  changeMode: PropTypes.func.isRequired,
+  resetMode: PropTypes.func.isRequired,
+  selectMode: PropTypes.func.isRequired,
+  isReset: PropTypes.bool.isRequired,
 }
 
 export default App;

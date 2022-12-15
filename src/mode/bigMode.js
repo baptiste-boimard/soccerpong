@@ -33,7 +33,7 @@
         y: 0,
         radius : ballRadius,
         velocity: 3,
-        velocityRate: 0.05,
+        velocityRate: 0.5,
         dx: 3,
         dy: 3*(Math.random()*2-1),
     }
@@ -202,7 +202,7 @@ function resetBallFor1() {
     ball.y = firstPaddle.y + paddleHeight/2;
     ball.dx = 0;
     ball.dy = 0;
-    goalFor1 = true;
+    ball.velocity = 5;
 }
 
 function resetBallFor2() {
@@ -211,6 +211,7 @@ function resetBallFor2() {
     ball.dx = 0;
     ball.dy = 0;
     goalFor2 = true;
+    ball.velocity = 3;
 }
 
 

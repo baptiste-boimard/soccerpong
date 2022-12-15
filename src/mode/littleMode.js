@@ -33,7 +33,7 @@
         y: 0,
         radius : ballRadius,
         velocity: 3,
-        velocityRate: 0.05,
+        velocityRate: 1,
         dx: 3,
         dy: 3*(Math.random()*2-1),
     }
@@ -222,6 +222,7 @@ function resetBallFor1() {
     ball.dx = 0;
     ball.dy = 0;
     goalFor1 = true;
+    ball.velocity = 3;
 }
 
 function resetBallFor2() {
@@ -230,6 +231,7 @@ function resetBallFor2() {
     ball.dx = 0;
     ball.dy = 0;
     goalFor2 = true;
+    ball.velocity = 3;
 }
 
 

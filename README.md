@@ -1,4 +1,9 @@
-# CanvasSoccer V1.3
+# CanvasSoccer V1.5
+
+V1.5 : Ajustement des vitesses et accélération de la balle en fonction des modes
+
+V1.4 : Choix du mode de jeux avec les boutons "Grand But" et "Petit But"
+  -Possiblité de reset en cliquant sur le mode actuel
 
 V1.3 : 
   - Ajout de la version "petit but"

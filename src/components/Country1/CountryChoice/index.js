@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 //Style
 import "./style.css"
 
@@ -9,7 +11,7 @@ import italie from "../../../assets/images/italie.png"
 import allemagne from "../../../assets/images/allemagne.png"
 import senegal from "../../../assets/images/senegal.png"
 
-const Country1Choise = ({countryChoice, changeFlag}) => {
+const CountryChoise = ({countryChoice, changeFlag}) => {
 
     //Fonction de choix du drapeau
     const selectFlag = (event) => {
@@ -29,4 +31,9 @@ const Country1Choise = ({countryChoice, changeFlag}) => {
     );
 }
 
-export default Country1Choise;
+CountryChoise.propTypes = {
+    countryChoice: PropTypes.func.isRequired,
+    changeFlag: PropTypes.func.isRequired,
+}
+
+export default CountryChoise;
